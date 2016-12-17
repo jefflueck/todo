@@ -30,7 +30,7 @@ fuction mainContoller($scope, $http) {
 
     //delete a todo after checking it
     $scope.deleteTodo = function(id) {
-      $http.delete('/apt/todos/' + id)
+      $http.delete('/api/todos/' + id)
       .success(function(data){
         $scope.todos = data;
         console.log(data);
