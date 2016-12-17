@@ -18,15 +18,6 @@ var Todo = mongoose.model('Todo', {
   text: String
 });
 
-// application
-app.get('*', function(req, res) {
-  res.sendfile('./public/index.html'); // load the single view file
-});
-
-// listen (start app with node server.js)
-app.listen(3000);
-console.log("App listening on port 3000");
-
 // routes
 
 //api
@@ -69,3 +60,11 @@ app.post('/api/todos', function(req, res) {
 
     });
 });
+// application
+app.get('*', function(req, res) {
+  res.sendfile('./public/index.html'); // load the single view file
+});
+
+// listen (start app with node server.js)
+app.listen(3000);
+console.log("App listening on port 3000");
