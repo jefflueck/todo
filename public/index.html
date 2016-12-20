@@ -28,13 +28,13 @@
   <div class="container">
 
     <div class="jumbotron text-center">
-      <h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length}}</span></h1>
+      <h1>I'm a Todo-aholic <span class="label label-info">{{todos.length}}</span></h1>
 
     <!-- Todo list -->
     <div id="todo-list" class="row">
       <div class="col-sm-4 col-sm-offset-4">
         <label>
-          <input type="checkbox" ng-click"deleteTodo(todo.id)"> {{todo.text}}
+          <input type="checkbox" ng-click"deleteTodo(todo.id)"> {{todos.text}}
         </label>
       </div>
 

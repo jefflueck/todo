@@ -10,9 +10,10 @@ mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu'); 
 
 app.use(express.static(__dirname = '/public')); // set the static file structure
 app.use(morgan('dev')); // log every request to the console
-app.use(bodyParser.urlencoded({'extended':'true'})); //parse application/x-form-urlencoded
+app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); //parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); //parse application/vnd.api+json as json
+app.use(methodOverride());
 
 var Todo = mongoose.model('Todo', {
   text: String
@@ -49,16 +50,33 @@ app.post('/api/todos', function(req, res) {
         res.send(err);
 
         // get and return all the todos after you create another
-        Todo.find(function(err, todo) {
+        Todo.find(function(err, todos) {
           if (err)
 
             res.send(err)
 
-          res.json(todo);
+          res.json(todos);
 
       });
 
     });
+});
+
+// delete a todo
+app.delete('/api/todos/:todo_id', function(req,res) {
+  Todo.remove({
+    _id : req.parms.todo_id
+  }, function(err, todo) {
+    if (err)
+      res.send(err)
+
+    // get and return all the todos after you create another
+    Todo.find(function(err, todos) {
+      if(err)
+        res.send(err)
+      res.json(todos);
+    });
+  });
 });
 // application
 app.get('*', function(req, res) {
