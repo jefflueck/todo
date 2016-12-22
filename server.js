@@ -6,9 +6,10 @@ var bodyParser = require ('body-parser');
 var methodOverride = require ('method-override');
 
 // configuration
-mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu');     // connect to mongoDB database on modulus.io
+// mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu');     // connect to mongoDB database on modulus.io
+mongoose.connect('mongodb://localhost/todo');     // connect to mongoDB database on modulus.io
 
-app.use(express.static(__dirname = '/public')); // set the static file structure
+app.use(express.static(__dirname + '/public')); // set the static file structure
 app.use(morgan('dev')); // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); //parse application/json
@@ -65,7 +66,7 @@ app.post('/api/todos', function(req, res) {
 // delete a todo
 app.delete('/api/todos/:todo_id', function(req,res) {
   Todo.remove({
-    _id : req.parms.todo_id
+    _id : req.params.todo_id
   }, function(err, todo) {
     if (err)
       res.send(err)

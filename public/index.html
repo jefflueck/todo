@@ -33,9 +33,13 @@
     <!-- Todo list -->
     <div id="todo-list" class="row">
       <div class="col-sm-4 col-sm-offset-4">
-        <label>
-          <input type="checkbox" ng-click"deleteTodo(todo.id)"> {{todos.text}}
-        </label>
+
+        <!-- LOOP OVER THE TODOS IN $scope.todos -->
+        <div class="checkbox" ng-repeat="todo in todos">
+          <label>
+            <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{todo.text}}
+          </label>
+        </div>
       </div>
 
     </div>
